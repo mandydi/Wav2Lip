@@ -11,7 +11,7 @@ def main(args):
 
     # 获取当前的目录 LRS2示例:5535415699068794046/00001
     #result = [path.basename(f) for f in glob("{}/*".format(args.base_path)) if path.isfile(f)]
-    result=list(path.basename(f) for f in glob("{}/*".format(args.base_path)))
+    result = list(path.join(path.basename(path.dirname(f)), path.basename(f)) for f in glob("{}/*/*".format(args.base_path)))
     train_files, test_files = train_test_split(result, test_size=0.2, random_state=42)
     # 将数组写进文本
     #输入参数 --base_path lrw_preprocessed/val
